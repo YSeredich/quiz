@@ -27,8 +27,7 @@ label {
     opacity: 0.8;
 }
 .btn:hover,
-.btn:active,
-.btn:visited {
+.btn:active {
     background: #c90035;
     color: #fff;
 }
