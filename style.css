@@ -1,0 +1,34 @@
+h2 {
+    color: #5b1647;
+    opacity: 0.8;
+}
+main {
+    padding-left: 10px;
+}
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+li {
+    padding-bottom: 10px;
+}
+label {
+    cursor: pointer;
+}
+.btn {
+    display: inline-block;
+    padding: 5px 10px;
+    text-decoration: none;
+    text-transform: capitalize;
+    border-radius: 2px;
+    border: 1px solid #c90035;
+    color: #c90035;
+    background: transparent;
+    opacity: 0.8;
+}
+.btn:hover,
+.btn:active,
+.btn:visited {
+    background: #c90035;
+    color: #fff;
+}
