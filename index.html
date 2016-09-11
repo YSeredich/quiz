@@ -6,20 +6,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
+<header class="container">
     <h2>Ответь на вопрос</h2>
 </header>
-<main>
+<main class="container">
     <div id="ansContainer">
         <p id="quest">quiz text</p>
         <ul>
-            <li><input data-right="false" type="radio" name="answer" value="0" id="ans1" checked><label class="answer-lbl" for="ans1">Var1</label></li>
+            <li><input data-right="false" type="radio" name="answer" value="0" id="ans1"><label class="answer-lbl" for="ans1">Var1</label></li>
             <li><input data-right="false" type="radio" name="answer" value="0" id="ans2"><label class="answer-lbl" for="ans2">Var2</label></li>
             <li><input data-right="false" type="radio" name="answer" value="0" id="ans3"><label class="answer-lbl" for="ans3">Var3</label></li>
             <li><input data-right="false" type="radio" name="answer" value="0" id="ans4"><label class="answer-lbl" for="ans4">Var4</label></li>
         </ul>
         <div>
             <a href="#" class="btn">ответить</a>
+        </div>
+        <div>
+            <span id="counter">1</span><span>/10</span>
         </div>
     </div>
 </main>

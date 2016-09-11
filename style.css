@@ -1,3 +1,8 @@
+.container {
+    display: block;
+    min-width: 800px;
+    margin: 10px auto;
+}
 h2 {
     color: #5b1647;
     opacity: 0.8;
@@ -25,6 +30,7 @@ label {
     color: #c90035;
     background: transparent;
     opacity: 0.8;
+    margin-bottom: 20px;
 }
 .btn:hover,
 .btn:active {
