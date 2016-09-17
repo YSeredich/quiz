@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="helper.css">
 </head>
 <body>
 <header class="container">
     <h2>Ответь на вопрос</h2>
 </header>
-<main class="container">
+<main class="container" id="container">
     <div id="ansContainer">
         <p id="quest">quiz text</p>
         <ul>
@@ -19,11 +20,15 @@
             <li><input data-right="false" type="radio" name="answer" value="0" id="ans4"><label class="answer-lbl" for="ans4">Var4</label></li>
         </ul>
         <div>
-            <a href="#" class="btn">ответить</a>
+            <a href="#" class="btn" data-action="answer-btn">ответить</a>
         </div>
         <div>
             <span id="counter">1</span><span>/10</span>
         </div>
+    </div>
+    <div class="invisible" id="finalScreen">
+        <div class="final-screen-text">Твой счет <span id="finalScore"></span>, нубасина!</div>
+        <a href="#" class="btn" data-action="restart-btn">начать заново</a>
     </div>
 </main>
 <footer></footer>

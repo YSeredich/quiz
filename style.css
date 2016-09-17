@@ -1,8 +1,3 @@
-.container {
-    display: block;
-    min-width: 800px;
-    margin: 10px auto;
-}
 h2 {
     color: #5b1647;
     opacity: 0.8;
@@ -37,3 +32,8 @@ label {
     background: #c90035;
     color: #fff;
 }
+
+.final-screen-text {
+    margin-bottom: 20px;
+}
+

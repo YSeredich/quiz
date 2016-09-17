@@ -1,0 +1,8 @@
+.container {
+    display: block;
+    min-width: 800px;
+    margin: 10px auto;
+}
+.invisible {
+    display: none;
+}

@@ -2,21 +2,29 @@
  * Created by yulia on 10.09.2016.
  */
 'use strict';
-var container = document.querySelector('#ansContainer');
-var questContainer = container.querySelector('#quest');
-var answer = container.querySelectorAll('input[name=answer]');
-var answerLabel = container.querySelectorAll('.answer-lbl');
-var counterContainer = container.querySelector('#counter');
-var btn = container.querySelector('.btn');
+
+var container = document.querySelector('#container');
+
+var finalScreen = container.querySelector('#finalScreen');
+var finalScoreContainer = finalScreen.querySelector('#finalScore');
+var restartBtn = finalScreen.querySelector('[data-action=restart-btn]');
+
+var ansContainer = container.querySelector('#ansContainer');
+var questContainer = ansContainer.querySelector('#quest');
+var answer = ansContainer.querySelectorAll('input[name=answer]');
+var answerLabel = ansContainer.querySelectorAll('.answer-lbl');
+var counterContainer = ansContainer.querySelector('#counter');
+var answerBtn = ansContainer.querySelector('[data-action=answer-btn]');
+
 var questions = [];
 var rightScore = 0;
 answer[0].checked = true;
 
 getQuestions();
-
 var j = 0;
 setQuiz(questions[j], 1);
-btn.onclick = function(e) {
+
+answerBtn.onclick = function(e) {
     e.preventDefault();
     var right = container.querySelector('input[data-right=true]');
     if (right.checked) {
@@ -26,8 +34,19 @@ btn.onclick = function(e) {
     if (j < questions.length) {
         setQuiz(questions[j], j+1);
     } else {
-        alert('Твой счет ' + rightScore + ' из ' + questions.length + ', нубасина!');
+        ansContainer.classList.add('invisible');
+        finalScreen.classList.remove('invisible');
+        finalScoreContainer.innerHTML = rightScore + ' из ' + questions.length;
     }
+};
+
+restartBtn.onclick = function(e) {
+    e.preventDefault();
+    j = 0;
+    rightScore = 0;
+    setQuiz(questions[j], 1);
+    ansContainer.classList.remove('invisible');
+    finalScreen.classList.add('invisible');
 };
 
 
