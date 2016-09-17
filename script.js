@@ -22,7 +22,8 @@ answer[0].checked = true;
 
 getQuestions();
 var j = 0;
-setQuiz(questions[j], 1);
+var randQuestions = getRandQuestions(10);
+setQuiz(randQuestions[j], 1);
 
 answerBtn.onclick = function(e) {
     e.preventDefault();
@@ -31,25 +32,24 @@ answerBtn.onclick = function(e) {
         rightScore += 1;
     }
     j++;
-    if (j < questions.length) {
-        setQuiz(questions[j], j+1);
+    if (j < randQuestions.length) {
+        setQuiz(randQuestions[j], j+1);
     } else {
         ansContainer.classList.add('invisible');
         finalScreen.classList.remove('invisible');
-        finalScoreContainer.innerHTML = rightScore + ' из ' + questions.length;
+        finalScoreContainer.innerHTML = rightScore + ' из ' + randQuestions.length;
     }
 };
 
 restartBtn.onclick = function(e) {
     e.preventDefault();
     j = 0;
+    randQuestions = getRandQuestions(10);
     rightScore = 0;
-    setQuiz(questions[j], 1);
+    setQuiz(randQuestions[j], 1);
     ansContainer.classList.remove('invisible');
     finalScreen.classList.add('invisible');
 };
-
-
 
 function setQuiz(data, counter) {
     questContainer.innerHTML = data.question;
@@ -83,6 +83,28 @@ function getQuestions() {
     };
     xhr.send();
 }
+
+function getRandQuestions(num) {
+    var indexes = [];
+    var randQuestions = [];
+    var total = questions.length;
+    while ( indexes.length < num) {
+        var randNum =  randomInteger(total);
+        if (indexes.indexOf(randNum) === -1) {
+            indexes.push(randNum);
+            randQuestions.push(questions[randNum]);
+        }
+    }
+    return randQuestions;
+}
+
+function randomInteger(max) {
+    var rand = Math.random() * max;
+    rand = Math.floor(rand);
+    return rand;
+}
+
+
 
 
 
