@@ -25,10 +25,15 @@ label {
     color: #c90035;
     background: transparent;
     opacity: 0.8;
+    margin-bottom: 20px;
 }
 .btn:hover,
-.btn:active,
-.btn:visited {
+.btn:active {
     background: #c90035;
     color: #fff;
 }
+
+.final-screen-text {
+    margin-bottom: 20px;
+}
+
