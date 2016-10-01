@@ -7,17 +7,16 @@
     <link rel="stylesheet" href="helper.css">
 </head>
 <body>
-<header class="container">
-    <h2>Ответь на вопрос</h2>
-</header>
 <main class="container" id="container">
+    
     <div id="ansContainer">
+        <h2>Ответь на вопрос</h2>
         <p id="quest">quiz text</p>
         <ul>
-            <li><input data-right="false" type="radio" name="answer" value="0" id="ans1"><label class="answer-lbl" for="ans1">Var1</label></li>
-            <li><input data-right="false" type="radio" name="answer" value="0" id="ans2"><label class="answer-lbl" for="ans2">Var2</label></li>
-            <li><input data-right="false" type="radio" name="answer" value="0" id="ans3"><label class="answer-lbl" for="ans3">Var3</label></li>
-            <li><input data-right="false" type="radio" name="answer" value="0" id="ans4"><label class="answer-lbl" for="ans4">Var4</label></li>
+            <li><input data-right="false" type="radio" name="answer" value="1" id="ans1"><label class="answer-lbl" for="ans1">Var1</label></li>
+            <li><input data-right="false" type="radio" name="answer" value="2" id="ans2"><label class="answer-lbl" for="ans2">Var2</label></li>
+            <li><input data-right="false" type="radio" name="answer" value="3" id="ans3"><label class="answer-lbl" for="ans3">Var3</label></li>
+            <li><input data-right="false" type="radio" name="answer" value="4" id="ans4"><label class="answer-lbl" for="ans4">Var4</label></li>
         </ul>
         <div>
             <a href="#" class="btn" data-action="answer-btn">ответить</a>
@@ -26,10 +25,30 @@
             <span id="counter">1</span><span>/10</span>
         </div>
     </div>
+
+    <div id="questionTemplate" class="invisible">
+        <div class="item-wrap">
+            <p data-content="questionText">quiz text</p>
+            <ul>
+                <li><label class="answer-lbl"><input type="radio" name="answer" value="1"></label></li>
+                <li><label class="answer-lbl"><input type="radio" name="answer" value="2"></label></li>
+                <li><label class="answer-lbl"><input type="radio" name="answer" value="3"></label></li>
+                <li><label class="answer-lbl"><input type="radio" name="answer" value="4"></label></li>
+            </ul>
+        </div>
+    </div>
+
     <div class="invisible" id="finalScreen">
+        <h2>Ваш результат</h2>
         <div class="final-screen-text">Твой счет <span id="finalScore"></span>, нубасина!</div>
         <a href="#" class="btn" data-action="restart-btn">начать заново</a>
+        <a href="#" class="btn" data-action="result-btn">подробнее</a>
     </div>
+
+    <div class="invisible" id="resultScreen">
+
+    </div>
+
 </main>
 <footer></footer>
 <script src="script.js"></script>

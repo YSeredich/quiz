@@ -8,6 +8,7 @@ var container = document.querySelector('#container');
 var finalScreen = container.querySelector('#finalScreen');
 var finalScoreContainer = finalScreen.querySelector('#finalScore');
 var restartBtn = finalScreen.querySelector('[data-action=restart-btn]');
+var resultBtn = finalScreen.querySelector('[data-action=result-btn]');
 
 var ansContainer = container.querySelector('#ansContainer');
 var questContainer = ansContainer.querySelector('#quest');
@@ -27,9 +28,14 @@ setQuiz(randQuestions[j], 1);
 
 answerBtn.onclick = function(e) {
     e.preventDefault();
-    var right = container.querySelector('input[data-right=true]');
+    var right = ansContainer.querySelector('input[data-right=true]');
     if (right.checked) {
         rightScore += 1;
+    }
+    for (var i = 0; i < 4; i++) {
+        if (answer[i].checked) {
+            randQuestions[j].checked = answer[i].value;
+        }
     }
     j++;
     if (j < randQuestions.length) {
@@ -49,6 +55,19 @@ restartBtn.onclick = function(e) {
     setQuiz(randQuestions[j], 1);
     ansContainer.classList.remove('invisible');
     finalScreen.classList.add('invisible');
+};
+
+resultBtn.onclick = function(e) {
+    e.preventDefault();
+    var fragment = document.createDocumentFragment();
+    randQuestions.forEach(function(quest) {
+        var quizElem = renderQuestion(quest);
+        fragment.appendChild(quizElem);
+    });
+    var resultContainer = container.querySelector('#resultScreen');
+    finalScreen.classList.add('invisible');
+    resultContainer.classList.remove('invisible');
+    resultContainer.appendChild(fragment);
 };
 
 function setQuiz(data, counter) {
@@ -104,7 +123,20 @@ function randomInteger(max) {
     return rand;
 }
 
-
-
-
-
+function renderQuestion(data) {
+    var template = document.querySelector('#questionTemplate');
+    var item = template.children[0].cloneNode(true);
+    item.querySelector('[data-content=questionText').innerHTML = data.question;
+    var answersWrap = item.querySelectorAll('input[name=answer]');
+    for (var i = 0; i < answersWrap.length; i++){
+        var parent = answersWrap[i].parentElement;
+        parent.innerHTML += data.answers[i];
+        if ( i + 1 == data.right) {
+            parent.classList.add('right-answer');
+        }
+        if ( i + 1 == data.checked) {
+            parent.classList.add('right-answer');
+        }
+    }
+    return item;
+}
