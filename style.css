@@ -37,3 +37,9 @@ label {
     margin-bottom: 20px;
 }
 
+.right-answer {
+    background-color: aquamarine;
+}
+.checked-answer {
+    border: 2px solid #5b1647;
+}
