@@ -43,3 +43,6 @@ label {
 .checked-answer {
     border: 2px solid #5b1647;
 }
+.result-quest-text {
+    text-transform: uppercase;
+}
