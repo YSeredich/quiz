@@ -61,7 +61,7 @@ resultBtn.onclick = function(e) {
     e.preventDefault();
     var fragment = document.createDocumentFragment();
     randQuestions.forEach(function(quest) {
-        var quizElem = renderQuestion(quest);
+        var quizElem = renderResultQuestion(quest);
         fragment.appendChild(quizElem);
     });
     var resultContainer = container.querySelector('#resultScreen');
@@ -70,18 +70,11 @@ resultBtn.onclick = function(e) {
     resultContainer.appendChild(fragment);
 };
 
-function setQuiz(data, counter) {
-    questContainer.innerHTML = data.question;
-    var answerText = data.answers;
-    for (var i = 0; i < answer.length; i++){
-        answerLabel[i].innerHTML = answerText[i];
-        answer[i].setAttribute('data-right', 'false');
-        if (answer[i].id == 'ans' + data.right) {
-            answer[i].setAttribute('data-right', 'true');
-        }
-    }
-    answer[0].checked = true;
-    counterContainer.innerHTML = counter;
+
+function randomInteger(max) {
+    var rand = Math.random() * max;
+    rand = Math.floor(rand);
+    return rand;
 }
 
 function getQuestions() {
@@ -117,26 +110,41 @@ function getRandQuestions(num) {
     return randQuestions;
 }
 
-function randomInteger(max) {
-    var rand = Math.random() * max;
-    rand = Math.floor(rand);
-    return rand;
-}
-
-function renderQuestion(data) {
-    var template = document.querySelector('#questionTemplate');
-    var item = template.children[0].cloneNode(true);
-    item.querySelector('[data-content=questionText').innerHTML = data.question;
-    var answersWrap = item.querySelectorAll('input[name=answer]');
-    for (var i = 0; i < answersWrap.length; i++){
-        var parent = answersWrap[i].parentElement;
-        parent.innerHTML += data.answers[i];
-        if ( i + 1 == data.right) {
-            parent.classList.add('right-answer');
-        }
-        if ( i + 1 == data.checked) {
-            parent.classList.add('right-answer');
+function setQuiz(data, counter) {
+    questContainer.innerHTML = data.question;
+    var answerText = data.answers;
+    for (var i = 0; i < answer.length; i++){
+        answerLabel[i].innerHTML = answerText[i];
+        answer[i].setAttribute('data-right', 'false');
+        if (answer[i].id == 'ans' + data.right) {
+            answer[i].setAttribute('data-right', 'true');
         }
     }
+    answer[0].checked = true;
+    counterContainer.innerHTML = counter;
+}
+
+function renderResultQuestion(data) {
+    var item = document.createElement('div');
+
+    var itemQuestion = document.createElement('p');
+    itemQuestion.classList.add('result-quest-text');
+    itemQuestion.innerHTML = data.question;
+    item.appendChild(itemQuestion);
+
+    var answersWrap = document.createElement('ul');
+
+    for (var i = 0; i < data.answers.length; i++){
+        var itemAnswer = document.createElement('li');
+        itemAnswer.innerHTML = data.answers[i];
+        if ( i + 1 == data.right) {
+            itemAnswer.classList.add('right-answer');
+        }
+        if ( i + 1 == data.checked) {
+            itemAnswer.classList.add('checked-answer');
+        }
+        answersWrap.appendChild(itemAnswer);
+    }
+    item.appendChild(answersWrap);
     return item;
 }
